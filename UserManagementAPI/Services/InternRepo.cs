@@ -30,9 +30,10 @@ namespace UserManagementAPI.Services
             throw new NotImplementedException();
         }
 
-        public Task<ICollection<Intern>?> GetAll()
+        public async Task<ICollection<Intern>?> GetAll()
         {
-            throw new NotImplementedException();
+            var getDetails = await _context.Interns.ToListAsync();
+            return getDetails;
         }
 
         public Task<Intern?> Update(Intern item)

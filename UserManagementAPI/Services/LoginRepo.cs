@@ -5,7 +5,7 @@ using UserManagementAPI.Models.DTOs;
 
 namespace UserManagementAPI.Services
 {
-    public class LoginRepo : ILogin<LogInDTO>
+    public class LoginRepo : ILogin<LogInDTO,int,string>
     {
         private readonly UserContext _userContext;
         private readonly ILogger<LoginRepo> _logger;
@@ -57,7 +57,7 @@ namespace UserManagementAPI.Services
             return null;
         }
 
-        public Task<string?> Update(int userID,string Status)
+        public async Task<string?> Update(int userID,string Status)
         {
             try
             {
@@ -65,7 +65,8 @@ namespace UserManagementAPI.Services
                 if (userCheck != null)
                 {
                     userCheck.Status = Status;
-
+                    await _userContext.SaveChangesAsync();
+                    return userCheck.Status;
                 }
             }
             catch (Exception ex)

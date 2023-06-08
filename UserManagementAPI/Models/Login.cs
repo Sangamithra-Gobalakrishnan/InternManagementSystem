@@ -12,8 +12,11 @@ namespace UserManagementAPI.Models
         [ForeignKey("UserId")]
         public int UserId { get; set; }
         public User? User { get; set; }
+
+        [Column(TypeName = "date")]
         public DateTime? LogInTime { get; set; }
 
+        [Column(TypeName = "date")]
         public DateTime? LogOutTime { get; set; }
     }
 }
