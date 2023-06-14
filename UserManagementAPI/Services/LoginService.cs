@@ -8,13 +8,13 @@ namespace UserManagementAPI.Services
 {
     public class LoginService : ILoginService
     {
-        private readonly ILogin<LogInDTO,int,string> _login;
-        private readonly IFilter<Intern> _filter;
+        private readonly ILogin<LogInDTO,int> _login;
+        private readonly IFilter<Intern,Login> _filter;
         private readonly IGeneratePassword _generatePassword;
         private readonly IRepo<User, int> _repo;
 
-        public LoginService(ILogin<LogInDTO,int,string> login,
-                            IFilter<Intern> filter,
+        public LoginService(ILogin<LogInDTO,int> login,
+                            IFilter<Intern,Login> filter,
                             IGeneratePassword generatePassword,
                             IRepo<User,int> repo)
         {
@@ -23,23 +23,22 @@ namespace UserManagementAPI.Services
             _generatePassword = generatePassword;
             _repo = repo;
         }
-        public async Task<string> AddIn(LogInDTO logInDTO)
+        public async Task<LogInDTO?> AddInTime(LogInDTO logInDTO)
         {
-            var result = await _login.AddIn(logInDTO);
+            var result = await _login.AddInTime(logInDTO);
             if (result != null)
-                return "Successfull";
-            return "Unsuccessfull";
+                return logInDTO;
+            return null;
         }
-        public async Task<string> AddOut(LogInDTO logInDTO)
+        public async Task<LogInDTO?> AddOutTime(LogInDTO logInDTO)
         {
-            var result = await _login.AddOut(logInDTO);
+            var result = await _login.AddOutTime(logInDTO);
             if (result != null)
-                return "Successfull";
-            return "Unsuccessfull";
+                return logInDTO;
+            return null;
 
         }
-
-        public async Task<string> ChangePassword(PasswordDTO passwordDTO)
+        public async Task<User?> ChangePassword(PasswordDTO passwordDTO)
         {
             User user = new User();
             var hmac = new HMACSHA512();
@@ -50,13 +49,15 @@ namespace UserManagementAPI.Services
             user.Status =  userIntern.Status;
             user.Role=userIntern.Role;
             var result = await _repo.Update(user);
+            User resUser = new User();
+            resUser.UserId = passwordDTO.UserID;
+            resUser.Role = userIntern.Role;
             if (result != null)
-                return "Success";
-            return "Failure";
-
+                return resUser;
+            return null;
         }
 
-        public Task<ICollection<Intern>> GetAllUsers()
+        public Task<ICollection<Intern>?> GetAllUsers()
         {
             var result = _filter.GetAllUsers();
             if (result != null)
@@ -65,13 +66,24 @@ namespace UserManagementAPI.Services
 
         }
 
-        public async Task<string> UpdateStatus(int UserId, string Status)
+        public Task<ICollection<Login>?> GetAllLog()
         {
-            var result = await _login.Update(UserId,Status);
+            var result = _filter.GetAllLog();
             if (result != null)
-                return "Successful";
-            return "UnSuccessful";
+                return result;
+            return null;
 
+        }
+        public async Task<LogInDTO?> UpdateStatus(int UserId)
+        {
+            var result = await _login.UpdateStatus(UserId);
+            if (result != null)
+            {
+                LogInDTO logInDTO = new LogInDTO();
+                logInDTO.UserId = UserId;
+                return logInDTO;
+            }
+            return null;
         }
     }
 }

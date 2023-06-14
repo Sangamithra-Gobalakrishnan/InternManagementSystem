@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using UserManagementAPI.Interfaces;
 using UserManagementAPI.Models;
@@ -19,22 +18,22 @@ namespace UserManagementAPI.Controllers
         }
 
         [HttpPost("LogIn Time")]
-        [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(LogInDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<string>> LogInTime (LogInDTO logInDTO)
+        public async Task<ActionResult<LogInDTO>> LogInTime (LogInDTO logInDTO)
         {
-            var result = await _loginService.AddIn(logInDTO);
+            var result = await _loginService.AddInTime(logInDTO);
             if (result != null)
                 return Ok(result);
             return BadRequest(result);
         }
 
         [HttpPut("LogOut Time")]
-        [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(LogInDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<string>> LogOutTime(LogInDTO logInDTO)
         {
-            var result = await _loginService.AddOut(logInDTO);
+            var result = await _loginService.AddOutTime(logInDTO);
             if (result != null)
                 return Ok(result);
             return BadRequest(result);
@@ -42,26 +41,26 @@ namespace UserManagementAPI.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPut("Update Status")]
-        [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(LogInDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<string>> UpdateStatus(int UserID,string Status)
+        public async Task<ActionResult<LogInDTO?>> UpdateStatus(int UserID)
         {
-            var result = await _loginService.UpdateStatus(UserID, Status);
+            var result = await _loginService.UpdateStatus(UserID);
             if (result != null)
                 return Ok(result);
             return BadRequest(result);
         }
 
-        [Authorize]
         [HttpPut("Change Password")]
-        [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(User), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<string>> ChangePassword(PasswordDTO passwordDTO)
+        public async Task<ActionResult<User?>> ChangePassword(PasswordDTO passwordDTO)
         {
             var result = await _loginService.ChangePassword(passwordDTO);
             if (result != null)
                 return Ok(result);
-            return BadRequest(result);
+            return BadRequest("Unable To Change Password at this moment");
         }
+
     }
 }

@@ -5,11 +5,13 @@ namespace UserManagementAPI.Interfaces
 {
     public interface ILoginService
     {
-        public Task<string> AddIn(LogInDTO logInDTO);
-        public Task<string> AddOut(LogInDTO logInDTO);
-        public Task<string> UpdateStatus(int UserId,string Status);
-        public Task<ICollection<Intern>> GetAllUsers();
-        public Task<string> ChangePassword(PasswordDTO passwordDTO);
+        public Task<LogInDTO?> AddInTime(LogInDTO logInDTO);
+        public Task<LogInDTO?> AddOutTime(LogInDTO logInDTO);
+        public Task<LogInDTO?> UpdateStatus(int UserId);
+        public Task<ICollection<Intern>?> GetAllUsers();
+
+        public Task<ICollection<Login>?> GetAllLog();
+        public Task<User?> ChangePassword(PasswordDTO passwordDTO);
 
     }
 }

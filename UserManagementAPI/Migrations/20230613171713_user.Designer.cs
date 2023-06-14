@@ -12,7 +12,7 @@ using UserManagementAPI.Models;
 namespace UserManagementAPI.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20230608091417_user")]
+    [Migration("20230613171713_user")]
     partial class user
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,7 +33,7 @@ namespace UserManagementAPI.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");

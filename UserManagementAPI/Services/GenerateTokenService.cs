@@ -25,8 +25,10 @@ namespace UserManagementAPI.Services
                new Claim(ClaimTypes.Role,user.Role)
 
             };
+
             //Signature algorithm
             var cred = new SigningCredentials(_key, SecurityAlgorithms.HmacSha256);
+
             //Assembling the token details
             var tokenDescription = new SecurityTokenDescriptor
             {
@@ -34,6 +36,7 @@ namespace UserManagementAPI.Services
                 Expires = DateTime.Now.AddDays(5),
                 SigningCredentials = cred
             };
+
             //Using the handler to generate the token
             var tokenHandler = new JwtSecurityTokenHandler();
             var myToken = tokenHandler.CreateToken(tokenDescription);

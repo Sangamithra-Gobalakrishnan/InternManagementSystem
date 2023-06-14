@@ -43,13 +43,13 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 builder.Services.AddScoped<IRepo<User, int>, UserRepo>();
-builder.Services.AddScoped<IRepo<Intern, int>, InternRepo>();
+builder.Services.AddScoped<IIntern<Intern, int>, InternRepo>();
 builder.Services.AddScoped<IGeneratePassword, GeneratePasswordService>();
 builder.Services.AddScoped<IGenerateToken, GenerateTokenService>();
 builder.Services.AddScoped<IManageUser, ManageUserService>();
-builder.Services.AddScoped<ILogin<LogInDTO, int, string>, LoginRepo>();
+builder.Services.AddScoped<ILogin<LogInDTO, int>, LoginRepo>();
 builder.Services.AddScoped<ILoginService, LoginService>();
-builder.Services.AddScoped<IFilter<Intern>, FilterRepo>();
+builder.Services.AddScoped<IFilter<Intern,Login>, FilterRepo>();
 
 var app = builder.Build();
 

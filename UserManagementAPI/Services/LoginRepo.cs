@@ -1,11 +1,10 @@
-﻿using System.Reflection.Metadata.Ecma335;
-using UserManagementAPI.Interfaces;
+﻿using UserManagementAPI.Interfaces;
 using UserManagementAPI.Models;
 using UserManagementAPI.Models.DTOs;
 
 namespace UserManagementAPI.Services
 {
-    public class LoginRepo : ILogin<LogInDTO,int,string>
+    public class LoginRepo : ILogin<LogInDTO,int>
     {
         private readonly UserContext _userContext;
         private readonly ILogger<LoginRepo> _logger;
@@ -16,7 +15,7 @@ namespace UserManagementAPI.Services
             _logger = logger;
 
         }
-        public async Task<LogInDTO?> AddIn(LogInDTO item)
+        public async Task<LogInDTO?> AddInTime(LogInDTO item)
         {
             try
             {
@@ -38,7 +37,7 @@ namespace UserManagementAPI.Services
             }
             return null;
         }
-        public async Task<LogInDTO?> AddOut(LogInDTO item)
+        public async Task<LogInDTO?> AddOutTime(LogInDTO item)
         {
             try
             {
@@ -57,16 +56,18 @@ namespace UserManagementAPI.Services
             return null;
         }
 
-        public async Task<string?> Update(int userID,string Status)
+        public async Task<LogInDTO?> UpdateStatus(int userID)
         {
             try
             {
                 var userCheck = _userContext.Users.FirstOrDefault(i => i.UserId == userID);
                 if (userCheck != null)
                 {
-                    userCheck.Status = Status;
+                    userCheck.Status = "Approved";
                     await _userContext.SaveChangesAsync();
-                    return userCheck.Status;
+                    LogInDTO logInDTO = new LogInDTO();
+                    logInDTO.UserId = userID;
+                    return logInDTO;
                 }
             }
             catch (Exception ex)

@@ -18,6 +18,8 @@ namespace UserManagementAPI.Models
         [Required(ErrorMessage = "Name cannot be empty")]
         [MinLength(3, ErrorMessage = "Name cannot be less than 3 character")]
         public string Name { get; set; }
+
+        [Column(TypeName="date")]
         public DateTime DateOfBirth { get; set; }
         public int Age { get; set; }
         [Required(ErrorMessage = "Gender cannot be empty")]

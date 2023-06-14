@@ -1,4 +1,5 @@
-﻿using System.Reflection.Metadata.Ecma335;
+﻿using System.Reflection;
+using System.Reflection.Metadata.Ecma335;
 using System.Security.Cryptography;
 using System.Text;
 using UserManagementAPI.Interfaces;
@@ -10,12 +11,12 @@ namespace UserManagementAPI.Services
     public class ManageUserService : IManageUser
     {
         private readonly IRepo<User,int> _userRepo;
-        private readonly IRepo<Intern,int> _internRepo;
+        private readonly IIntern<Intern,int> _internRepo;
         private readonly IGeneratePassword _passwordService;
         private readonly IGenerateToken _tokenService;
 
         public ManageUserService(IRepo<User,int> userRepo,
-            IRepo<Intern, int> internRepo,
+            IIntern<Intern, int> internRepo,
             IGeneratePassword passwordService,
             IGenerateToken tokenService)
         {
@@ -24,14 +25,9 @@ namespace UserManagementAPI.Services
             _passwordService = passwordService;
             _tokenService = tokenService;
         }
-        public Task<UserDTO> ChangeStatus(UserDTO user)
+        public async Task<UserDTO?> Login(UserDTO userDTO)
         {
-            throw new NotImplementedException();
-        }
-
-        public async Task<UserDTO> Login(UserDTO userDTO)
-        {
-            UserDTO user = null;
+            UserDTO? user = null;
             var userData = await _userRepo.Get(userDTO.UserId);
             if (userData != null)
             {
@@ -48,44 +44,26 @@ namespace UserManagementAPI.Services
                 user.Token = _tokenService.GenerateToken(user);
             }
             return user;
-
         }
 
-        public async Task<UserDTO> Register(InternDTO intern)
+        public async Task<UserDTO?> Register(InternDTO intern)
         {
-            UserDTO user = null;
-            var userDetails = await _internRepo.GetAll();
-            if (userDetails != null)
+            UserDTO? user = null;
+            var hmac = new HMACSHA512();
+            string? generatedPassword = await _passwordService.GeneratePassword(intern);
+            intern.User.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(generatedPassword ?? "1234"));
+            intern.User.PasswordKey = hmac.Key;
+            intern.User.Role = "Intern";
+            var userResult = await _userRepo.Add(intern.User);
+            var internResult = await _internRepo.Add(intern);
+            if (userResult != null && internResult != null)
             {
-                foreach(var item in userDetails)
-                {
-                    if(item.Name == intern.Name)
-                    {
-                        return null;
-                    }
-                }
+                user = new UserDTO();
+                user.UserId = internResult.Id;
+                user.Role = userResult.Role;
+                user.Token = _tokenService.GenerateToken(user);
             }
-            var gender = intern.Gender;
-            if(gender.ToLower() == "male" || gender.ToLower() == "female")
-            {
-                intern.Gender = gender.ToLower();
-                var hmac = new HMACSHA512();
-                string? generatedPassword = await _passwordService.GeneratePassword(intern);
-                intern.User.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(generatedPassword ?? "1234"));
-                intern.User.PasswordKey = hmac.Key;
-                //intern.User.Role = "Intern";
-                var userResult = await _userRepo.Add(intern.User);
-                var internResult = await _internRepo.Add(intern);
-                if (userResult != null && internResult != null)
-                {
-                    user = new UserDTO();
-                    user.UserId = internResult.Id;
-                    user.Role = userResult.Role;
-                    user.Token = _tokenService.GenerateToken(user);
-                }
-                return user;
-            }return null;
-           
+            return user;
         }
     }
 }

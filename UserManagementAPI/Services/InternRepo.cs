@@ -4,7 +4,7 @@ using UserManagementAPI.Models;
 
 namespace UserManagementAPI.Services
 {
-    public class InternRepo : IRepo<Intern, int>
+    public class InternRepo : IIntern<Intern, int>
     {
         private readonly UserContext _context;
 

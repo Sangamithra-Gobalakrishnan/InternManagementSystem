@@ -18,7 +18,6 @@ namespace UserManagementAPI.Controllers
             _manageUser = manageUser;
         }
 
-
         [HttpPost("Register")]
         [ProducesResponseType(typeof(UserDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
