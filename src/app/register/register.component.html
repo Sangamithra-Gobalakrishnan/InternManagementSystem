@@ -1,0 +1,45 @@
+<div class="bgnd">
+  <div class="alert alert-success alert" role="alert" *ngIf="showStatus" >
+    Successfully Registered
+  </div>
+  <div class="heading">
+      ARE YOU A NEW INTERN?&nbsp;&nbsp;&nbsp;REGISTER HERE!
+  </div>
+  <div class="container">
+      <table class="table">
+          <tr class="tr">
+            <td><label for="username" class="label">Full Name</label></td>
+            <td><input type="text" class="form-control" id="username" placeholder="Enter Full Name" [(ngModel)]="intern.name" required></td>
+          </tr>
+          <tr class="tr1">
+            <td><label for="phone" class="label">Mobile Number</label></td>
+            <td><input type="text" class="form-control" id="phone" placeholder="Enter Mobile Number" [(ngModel)]="intern.phone"></td>
+          </tr>
+          <tr class="tr2">
+              <td><label for="email" class="label">Email ID</label></td>
+              <td><input type="text" class="form-control" id="email" placeholder="Enter Email ID" [(ngModel)]="intern.email"></td>
+          </tr>
+          <tr class="tr3">
+          <td><label for="gender" class="label">Gender</label></td>
+          <td>
+              <select class="form-control" id="gender" (change)="addGender(gender.value)" #gender required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+          </td>
+          </tr>
+          <tr class="tr4">
+              <td><label for="birth" class="label">Date of Birth</label></td>
+              <td><input type="date" class="form-control" id="birth" placeholder="Enter Date Of Birth" [(ngModel)]="intern.dateOfBirth" (change)="calculateAge()" required></td>
+          </tr>
+      </table>
+      <button type="submit" class="btn btn-dark tr5" (click)="addIntern()">REGISTER</button><br>
+      <span class="heading1">
+        Already Existing User? &nbsp;&nbsp;<a class="clr" routerLink="login">Login</a>
+    </span>
+    </div>
+</div>
+
+  <router-outlet></router-outlet>
+
+

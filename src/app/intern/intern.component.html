@@ -1,0 +1,41 @@
+<div class="bgnd">
+    <span class="heading">
+        Wanna See Existing Interns? ==> &nbsp;&nbsp;<button (click)="getInterns()" class="btn btn-success">Click Here</button>
+    </span>
+    
+    <div *ngIf="interns">
+        <table class="table" class="table table-bordered">
+            <thead>
+                <tr class="table-dark">
+                <th scope="col">User ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Date Of Birth</th>
+                <th scope="col">Age</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Mobile Number</th>
+                <th scope="col">Email</th>
+                <th scope="col">Role</th>
+                <th scope="col">Status</th>
+                <th scope="col">Change Status</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let intern of interns">
+                <tr  class="table-success">
+                <td>{{intern.user.userId}}</td>
+                <td>{{intern.name}}</td>
+                <td>{{intern.dateOfBirth}}</td>
+                <td>{{intern.age}}</td>
+                <td>{{intern.gender}}</td>
+                <td>{{intern.phone}}</td>
+                <td>{{intern.email}}</td>
+                <td>{{intern.user.role}}</td>
+                <td>{{intern.user.status}}</td>
+                <td><button (click)="changeStatus(intern.user.userId)" class="btn btn-danger color">Change Status</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+      

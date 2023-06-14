@@ -1,0 +1,48 @@
+.log{
+    text-align: right;
+    float: right;
+    position: relative;
+    left: -100px;
+    color: green;
+}
+.reg{
+    text-align: right;
+    float: right;
+    position: relative;
+    left: -80px;
+    color: red;
+}
+.center{
+    font-size: medium;
+    color: #000;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(179, 63, 83);
+    background-image: url('https://mdbootstrap.com/img/Photos/Others/images/76.jpg');
+
+}
+.title{
+    font-size: large;
+}
+.ticket{
+    text-align: right;
+    float: right;
+    position: relative;
+    left: -120px;
+    color: blue;
+}
+.intern{
+    text-align: right;
+    float: right;
+    position: relative;
+    left: -140px;
+    color: blueviolet;
+}
+.login{
+    text-align: right;
+    float: right;
+    position: relative;
+    left: -160px;
+    color: brown;
+}
+
+

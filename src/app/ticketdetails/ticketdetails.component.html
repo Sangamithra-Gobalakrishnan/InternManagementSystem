@@ -1,0 +1,35 @@
+<div class="bgnd">
+    <span class="heading">
+        Wanna See Existing Tickets To Be Solved? ==> &nbsp;&nbsp;<button (click)="getTickets()" class="btn btn-success">Click Here</button>
+    </span>
+    
+    <div *ngIf="tickets">
+        <table class="table" class="table table-bordered">
+            <thead>
+                <tr class="table-dark">
+                <th scope="col">Ticket ID</th>
+                <th scope="col">Issuer ID</th>
+                <th scope="col">Issue Title</th>
+                <th scope="col">Issue Description</th>
+                <th scope="col">Issue Date</th>
+                <th scope="col">Ticket Status</th>
+                <th scope="col">Priority</th>
+                <th scope="col">Category</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let ticket of tickets">
+                <tr  class="table-success">
+                <td>{{ticket.ticketID}}</td>
+                <td>{{ticket.issuerID}}</td>
+                <td>{{ticket.issueTitle}}</td>
+                <td>{{ticket.issueDescription}}</td>
+                <td>{{ticket.issueDate}}</td>
+                <td>{{ticket.ticketStatus}}</td>
+                <td>{{ticket.priority}}</td>
+                <td>{{ticket.category}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

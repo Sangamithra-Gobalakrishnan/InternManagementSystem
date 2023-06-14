@@ -1,0 +1,66 @@
+.container{
+    position: relative;
+    text-align: center;
+    width: 350px;
+    height: 300px;;
+    top: 100px;
+    background-color: white; 
+    border-radius: 5%;
+    background-image: url('https://mdbootstrap.com/img/Photos/Others/images/76.jpg');
+}
+
+.label{
+    color: darkred;
+    background-image: url('https://mdbootstrap.com/img/Photos/Others/images/76.jpg');
+ }
+
+ .heading{
+    text-align: center;
+    color: black;
+    font-family: cursive;
+    font-size: 20px;
+    position: relative;
+    top: 50px;
+}
+
+.heading1{
+    color: black;
+    position: relative;
+    top: 80px;
+
+}
+
+.alert{
+    text-align: center;
+}
+
+.tr1{
+    position: relative;
+    top:20px;
+    left:-10px;
+    border-radius: 1%;
+}
+
+.tr2{
+    position: relative;
+    top:35px;
+    left:-10px;
+}
+
+.tr3{
+    position: relative;
+    top:30px;
+}
+
+.bg{
+    background-color:  rgb(240, 165, 216);
+}
+
+.bgnd{
+    background-image: url('https://mdbootstrap.com/img/Photos/Others/images/76.jpg');
+    position: relative;
+    top: -10px;
+    height: 668px;
+}
+
+

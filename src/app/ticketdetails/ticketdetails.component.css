@@ -1,0 +1,21 @@
+.table{
+    position: relative;
+    text-align: center;
+    top: 60px;
+    width:80%;
+    left:150px;
+}
+.heading{
+    color: black;
+    font-family: cursive;
+    font-size: 20px;
+    position: relative;
+    left:450px;
+    top:30px;
+}
+.bgnd{
+    background-image: url('https://mdbootstrap.com/img/Photos/Others/images/76.jpg');
+    position: relative;
+    top: -10px;
+    height: 668px;
+}

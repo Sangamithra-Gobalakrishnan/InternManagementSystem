@@ -1,0 +1,27 @@
+<div class="bgnd">
+  <div class="heading">
+     READY WITH THE SOLUTION?&nbsp;&nbsp;&nbsp;PROVIDE HERE!
+  </div>
+  <div class="container">
+      <table class="table">
+          <tr class="tr1">
+            <td><label for="ticketId" class="label bg">Ticket Id</label></td>
+            <td><input type="text" class="form-control" id="ticketId" placeholder="Enter Ticket ID" [(ngModel)]="solution.ticketID" required></td>
+          </tr>
+          <tr class="tr2">
+            <td><label for="solution" class="label bg">Solution</label></td>
+            <td><input type="text" class="form-control" id="solution" placeholder="Enter Solution" [(ngModel)]="solution.issueSolution"></td>
+          </tr>
+          <tr class="tr3">
+              <td><label for="admin" class="label bg">Admin Name</label></td>
+              <td><input type="text" class="form-control" id="admin" placeholder="Enter Admin Name" [(ngModel)]="solution.adminName"></td>
+          </tr>
+      </table>
+      <button type="submit" class="btn btn-dark tr4" (click)="provideSolution()">Provide Solution</button><br>
+    </div>
+</div>
+
+
+
+
+  

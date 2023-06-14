@@ -1,0 +1,33 @@
+.container{
+    position: relative;
+    text-align: center;
+    width: 440px;
+    height: 400px;;
+    top: 100px;
+    background-color: white; 
+    border-radius: 5%;
+    background-color: rgb(240, 165, 216,0.3);  
+}
+
+.bgnd{
+    background-image: url('https://mdbootstrap.com/img/Photos/Others/images/76.jpg');
+    position: relative;
+    top: -10px;
+    height: 668px;
+}
+.tr1{
+    position: relative;
+    top:90px;
+}
+.tr2{
+    position: relative;
+    top:100px;
+}
+.tr3{
+    position: relative;
+    top:110px;
+}
+.tr4{
+    position: relative;
+    top:120px;
+}

@@ -1,0 +1,45 @@
+<div class="bgnd">
+  <div class="heading">
+    ANY PROBLEM? &nbsp;&nbsp;&nbsp;RAISE YOUR TICKET HERE
+  </div>
+  <div class="container">
+    <table class="table">
+        <tr class="tr1">
+          <td><label for="userId" class="label bg">USER ID</label></td>
+          <td><input type="text" class="form-control" id="userId" placeholder="Enter User ID" [(ngModel)]="ticket.issuerID"></td>
+        </tr>
+        <tr class="tr2">
+          <td><label for="title" class="label bg">TITLE</label></td>
+          <td><input type="text" class="form-control" id="title" placeholder="Enter Title" [(ngModel)]="ticket.issueTitle"></td>
+        </tr>
+        <tr class="tr3">
+          <td><label for="description" class="label bg">DESCRIPTION</label></td>
+          <td><textarea class="form-control" id="description" placeholder="Enter Description" [(ngModel)]="ticket.issueDescription"></textarea></td>
+        </tr>
+        <tr class="tr4">
+          <td><label for="priority" class="label bg">PRIORITY</label></td>
+          <td>
+            <select class="form-control" id="priority" (change)="addPriority(priority.value)" #priority>
+              <option value="Immedaite Action">Immediate Action</option>
+              <option value="Within 2 days">Within 2 days</option>
+              <option value="Within a week">Within a week</option>
+            </select>
+          </td>
+        </tr>
+        <tr class="tr5">
+          <td><label for="category" class="label bg">CATEGORY</label></td>
+          <td>
+            <select class="form-control" id="category" (change)="addCategory(category.value)" #category>
+              <option value="Technical Support">Technical Support</option>
+              <option value="Product Inquiry">Product Inquiry</option>
+              <option value="Bug Report">Bug Report</option>
+              <option value="General Inquiry">General Inquiry</option>
+            </select>
+          </td>
+        </tr>
+    </table>
+    <button type="submit" class="btn btn-dark tr6" (click)="raiseTicket()">RAISE TICKET</button>
+  </div>
+</div>
+
+

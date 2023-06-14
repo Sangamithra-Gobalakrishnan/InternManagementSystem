@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,26 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'internmanagement';
+ 
+  roleStatus: boolean = false;
+
+  @Input() role: string;
+
+  constructor() {
+    if (localStorage.getItem('role') == 'Admin') {
+      this.roleStatus = true;
+    }
+  }
+
+  // Update roleStatus when the role value changes
+  ngOnChanges() {
+    if (this.role == 'Admin') {
+      this.roleStatus = true;
+    } else {
+      this.roleStatus = false;
+    }
+  }
+    
 }
+
+ 

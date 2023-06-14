@@ -1,0 +1,16 @@
+<div class="bgnd">
+    <div class="heading">
+        Problem Solved?&nbsp;&nbsp;&nbsp;Cancel Ticket Here
+    </div>
+    <div class="container">
+        <table class="table">
+            <tr class="tr">
+              <td><label for="userId" class="label bg">Ticket ID</label></td>
+              <td><input type="text" class="form-control" id="userId" placeholder="Enter Ticket ID" [(ngModel)] ="ticketID"></td>
+            </tr>
+        </table>
+        <button type="submit" class="btn btn-dark bt" (click)="cancelTicket()">Cancel Ticket</button>
+    </div>
+</div>
+
+

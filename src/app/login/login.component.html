@@ -1,0 +1,31 @@
+<div class="bgnd">
+    <div class="alert alert-success alert" role="alert" *ngIf="this.loggedInUser.token!=''">
+        Login Successfull
+    </div>
+    <div class="alert alert-success alert" role="alert" *ngIf="this.logUser.role!=''">
+        Password Changed Successfully
+    </div>
+    <div class="heading">
+        EXISTING INTERN?&nbsp;&nbsp;&nbsp;LOGIN HERE
+    </div>
+    <div class="container">
+        <table class="table">
+            <tr class="tr1">
+                <td><label for="userId" class="label bg">User ID</label></td>
+                <td><input type="text" class="form-control" id="userId" placeholder="Enter User ID" [(ngModel)]="login.userId"></td>
+            </tr>
+            <tr class="tr2">
+                <td><label for="password" class="label bg">Password</label></td>
+                <td><input type="text" class="form-control" id="password" placeholder="Enter Password" [(ngModel)]="login.password"></td>
+            </tr>
+        </table><br>
+        <button type="submit" class="btn btn-dark tr3" (click)="loginCall();inCall(login.userId)" >LOGIN</button>&nbsp;&nbsp;&nbsp;
+        <button type="submit" class="btn btn-dark tr3" (click)="outCall(login.userId)">LOGOUT</button><br>
+        <span class="heading1">
+            Forget Password? &nbsp;&nbsp;<button class="btn btn-danger" (click)="changePassword()">Change Password</button>
+        </span>
+    </div>
+</div>
+
+
+      

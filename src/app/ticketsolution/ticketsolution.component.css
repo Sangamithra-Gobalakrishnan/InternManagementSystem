@@ -1,0 +1,50 @@
+.container{
+    position: relative;
+    text-align: center;
+    width: 440px;
+    height: 250px;;
+    top: 100px;
+    background-color: white; 
+    border-radius: 5%;
+    background-color: rgb(240, 165, 216,0.3);  
+}
+.label{
+    color: darkred;
+ }
+.heading{
+    text-align: center;
+    color: black;
+    font-family: cursive;
+    font-size: 20px;
+    position: relative;
+    top: 50px;
+}
+.bgnd{
+    background-image: url('https://mdbootstrap.com/img/Photos/Others/images/76.jpg');
+    background-repeat: no-repeat;
+    height: 650px;
+    background-size: cover; 
+}
+.bg{
+    background-color: rgb(240, 165, 216,0.0);  
+}
+.tr1{
+    position: relative;
+    top:20px;
+    left:-20px;
+}
+.tr2{
+    position: relative;
+    top:30px;
+    left:-20px;
+}
+.tr3{
+    position: relative;
+    top:40px;
+    left:-20px;
+}
+.tr4{
+    position: relative;
+    top:50px;
+    left:-20px;
+}
